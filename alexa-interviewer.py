@@ -41,8 +41,7 @@ def yes():
     url = ("https://s3.amazonaws.com/skill-interview/run_results.json")
     questions = requests.get(url).json()['interview_questions'][randint(0,9)]['question']
     msg = 'Ok, the question is, {}'.format(questions)
-    reprompt_msg = 'Should I repeat the question?'
-    return question(msg).reprompt(reprompt_msg)
+    return question(msg)
 
 @ask.intent("NoIntent")
 def end_round():
@@ -54,16 +53,14 @@ def next():
     url = ("https://s3.amazonaws.com/skill-interview/run_results.json")
     questions = requests.get(url).json()['interview_questions'][randint(0,9)]['question']
     msg = 'The next question is, {}'.format(questions)
-    reprompt_msg = 'Should I repeat the question?'
-    return question(msg).reprompt(reprompt_msg)   
+    return question(msg).  
 
 @ask.intent("CustomIntent")
 def custom():
     url = ("https://s3.amazonaws.com/skill-interview/custom_questions.json")
     questions = requests.get(url).json()['interview_questions'][randint(0,9)]['question']
     custom_msg = "I have got your custom questions from your email. I will take a random question from the pool. Let's start.   {}.".format(questions)
-    reprompt_msg = 'Should I repeat the question?'
-    return question(custom_msg).reprompt(reprompt_msg)
+    return question(custom_msg).
 
 @ask.intent("AMAZON.StopIntent")
 def stop():
